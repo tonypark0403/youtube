@@ -5,6 +5,11 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
+import homeRouter from './src/routes/homeRouter';
+import userRouter from './src/routes/userRouter';
+import videoRouter from './src/routes/videoRouter';
+import routes from "./src/routes";
+
 const app = express();
 
 const PORT = process.env.PORT || 4000;
@@ -22,14 +27,18 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(helmet());
-app.use(margan("dev")); //combinded, tiny, common...
+app.use(morgan("dev")); //combinded, tiny, common...
 
 const middleware = (req, res, next) => {
+    if(req) {
+        next();
+    }
     res.send("something happen in some case");
 }
 
-app.get("/", middleware, handleHome);
-
-app.get("/profile", handleProfile);
+//Middleware for routing
+app.use(routes.home, homeRouter);
+app.use(routes.users, userRouter);
+app.use(routes.videos, videoRouter);
 
 app.listen(PORT, handleListening);
