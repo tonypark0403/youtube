@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
+import path from 'path';
+
 import homeRouter from './src/routes/homeRouter';
 import userRouter from './src/routes/userRouter';
 import videoRouter from './src/routes/videoRouter';
@@ -24,6 +26,7 @@ const handleProfile = (req, res) => res.send("You are on my profile");
 
 //set
 app.set("view engine", "pug");
+app.set('views', path.join(__dirname, './src/views'));
 //Middlewares
 app.use(cookieParser());
 app.use(bodyParser.json());
