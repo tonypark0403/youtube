@@ -22,6 +22,8 @@ const handleHome = (req, res) => {
 
 const handleProfile = (req, res) => res.send("You are on my profile");
 
+//set
+app.set("view engine", "pug");
 //Middlewares
 app.use(cookieParser());
 app.use(bodyParser.json());
