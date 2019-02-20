@@ -5,22 +5,26 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import path from 'path';
 
-import homeRouter from './src/routes/homeRouter';
-import userRouter from './src/routes/userRouter';
-import videoRouter from './src/routes/videoRouter';
-import routes from "./src/routes";
+import { localsMiddleware } from './middlewares/localsMiddleware';
+import routes from "./routes";
+import homeRouter from './routes/homeRouter';
+import userRouter from './routes/userRouter';
+import videoRouter from './routes/videoRouter';
 
 const app = express();
 
 //set
 app.set("view engine", "pug");
-app.set('views', path.join(__dirname, './src/views'));
+app.set('views', path.join(__dirname, './views'));
+
 //Middlewares
+app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(helmet());
 app.use(morgan("dev")); //combinded, tiny, common...
+
+app.use(localsMiddleware); // about routes so should be before routers
 
 //Middleware for routing
 app.use(routes.home, homeRouter);
