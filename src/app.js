@@ -7,7 +7,7 @@ import path from 'path';
 
 import { localsMiddleware } from './middlewares/localsMiddleware';
 import routes from "./routes";
-import homeRouter from './routes/homeRouter';
+import globalRouter from './routes/globalRouter';
 import userRouter from './routes/userRouter';
 import videoRouter from './routes/videoRouter';
 
@@ -27,7 +27,7 @@ app.use(morgan("dev")); //combinded, tiny, common...
 app.use(localsMiddleware); // about routes so should be before routers
 
 //Middleware for routing
-app.use(routes.home, homeRouter);
+app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
 
