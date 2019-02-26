@@ -18,6 +18,7 @@ app.set("view engine", "pug");
 app.set('views', path.join(__dirname, './views'));
 
 //Middlewares
+app.use("/uploads", express.static('uploads/'));
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
