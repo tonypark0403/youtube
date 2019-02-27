@@ -1,7 +1,8 @@
 import express from "express";
 import routes from ".";
-import * as userController from '../controllers/userController';
-import * as videoController from '../controllers/videoController';
+import * as userController from "../controllers/userController";
+import * as videoController from "../controllers/videoController";
+
 const globalRouter = express.Router();
 
 globalRouter.get(routes.join, userController.getJoin);
