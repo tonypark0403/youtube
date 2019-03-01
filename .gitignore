@@ -30,3 +30,4 @@ benchmarks/graphs
 .env
 *lock*
 uploads
+static
