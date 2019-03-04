@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev:server": "nodemon --exec babel-node index.js --delay 2",
+    "dev:server": "nodemon --exec babel-node index.js --delay 2 --ignore 'scss'",
     "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
     "build:assets": "cross-env WEBPACK_ENV=production webpack"
   },
