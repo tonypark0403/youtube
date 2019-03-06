@@ -6,10 +6,14 @@ import * as videoController from "../controllers/videoController";
 const globalRouter = express.Router();
 
 globalRouter.get(routes.join, userController.getJoin);
-globalRouter.post(routes.join, userController.postJoin);
+globalRouter.post(
+  routes.join,
+  userController.postJoin,
+  userController.postLogin
+);
 
 globalRouter.get(routes.login, userController.getLogin);
-globalRouter.get(routes.login, userController.postLogin);
+globalRouter.post(routes.login, userController.postLogin);
 
 globalRouter.get(routes.home, videoController.home);
 globalRouter.get(routes.logout, userController.logout);
